@@ -1,0 +1,13 @@
+TIME=/usr/bin/time
+echo 'HashTable, HashTable(1G heap)'
+ghc -O2 -rtsopts HashTable.hs && $TIME ./HashTable && $TIME ./HashTable +RTS -H1G
+echo 'HashTables, HashTables(1G heap)'
+ghc -O2 -rtsopts HashTables.hs && $TIME ./HashTables && $TIME ./HashTables +RTS -H1G
+echo 'IntMap, IntMap(1G heap)'
+ghc -O2 -rtsopts IntMap.hs && $TIME ./IntMap && $TIME ./IntMap +RTS -H1G
+echo 'Judy, Judy(1G heap)'
+ghc -O2 -rtsopts Judy.hs && $TIME ./Judy && $TIME ./Judy +RTS -H1G
+echo 'Unordered, Unordered(1G heap)'
+ghc -O2 -rtsopts Unordered.hs && $TIME ./Unordered && $TIME ./Unordered +RTS -H1G
+echo CPython
+$TIME python -c 'print dict([(i,i) for i in xrange(10000000)])[100]'
